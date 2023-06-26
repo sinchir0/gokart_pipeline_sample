@@ -6,20 +6,11 @@ What's this project?
 # Run
 
 ```
-python main.py gokart_sample.Sample --local-scheduler
+python main.py gokart_sample.RunTask --local-scheduler
 ```
 
 # Test
 
 ```
-python -m unittest discover -s ./test/unit_test/
-```
-
-
-# Docker Run
-
-```
-poetry lock
-docker build
-docker run
+pytest
 ```
