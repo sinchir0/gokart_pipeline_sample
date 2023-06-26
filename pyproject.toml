@@ -9,7 +9,6 @@ license = "Proprietary"
 python = ">=3.11.0,<3.12"
 gokart = "^1.2.2"
 scikit-learn = "^1.2.2"
-wheel = "^0.40.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^6.0.0"
