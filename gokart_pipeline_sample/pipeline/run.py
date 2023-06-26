@@ -14,9 +14,9 @@ from gokart_pipeline_sample.utils.template import GokartTask
 class RunTask(GokartTask):
     def requires(self):
         data_task = LoadDataTask()
+
         data_task = PreprocessTask(data_task=data_task)
         data_task = SplitDataTask(data_task=data_task)
-
         train_data_task = GetDataTask(data_task=data_task, name="train")
         valid_data_task = GetDataTask(data_task=data_task, name="valid")
         test_data_task = GetDataTask(data_task=data_task, name="test")
@@ -43,7 +43,6 @@ class RunTask(GokartTask):
 class RunNestTask(GokartTask):
     def requires(self):
         data_task = PrepareDataTask()
-
         train_data_task = GetDataTask(data_task=data_task, name="train")
         valid_data_task = GetDataTask(data_task=data_task, name="valid")
         test_data_task = GetDataTask(data_task=data_task, name="test")
