@@ -1,1 +1,1 @@
-from gokart_sample.pipeline.run import RunTask
+from gokart_sample.pipeline.run import RunTask  # noqa: F401

@@ -1,5 +1,4 @@
 import gokart
-from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 
 from gokart_sample.utils.template import GokartTask
@@ -8,12 +7,13 @@ from gokart_sample.utils.template import GokartTask
 class SplitDataTask(GokartTask):
     data_task = gokart.TaskInstanceParameter()
 
-    def requires(self) -> None:
+    def requires(self) -> gokart.TaskInstanceParameter:
         return self.data_task
 
     def run(self) -> None:
         data = self.load()
-        X, y = data.data, data.target
+
+        X, y = data.drop("target", axis=1), data[["target"]]
 
         # trainとtestに分割
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)

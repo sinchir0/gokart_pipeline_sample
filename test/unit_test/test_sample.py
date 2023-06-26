@@ -1,20 +1,25 @@
-from logging import getLogger
-import unittest
-from unittest.mock import MagicMock
-from gokart_sample.pipeline.sample import Sample
+import pandas as pd
+import pytest
 
-logger = getLogger(__name__)
+from gokart_sample.pipeline.preprocess import PreprocessTask
 
 
-class TestSample(unittest.TestCase):
-    def setup(self):
-        self.output_data = None
-
-    def test_run(self):
-        task = Sample()
-        task.dump = MagicMock(side_effect=self._dump)
-        task.run()
-        self.assertEqual(self.output_data, "sample output")
-
-    def _dump(self, data):
-        self.output_data = data
+class TestMakeAreaTask:
+    @pytest.mark.parametrize(
+        ("length", "width", "expect"),
+        [
+            (
+                pd.Series([2.0, 4.0, 6.0]),
+                pd.Series([1.0, 2.0, 3.0]),
+                pd.Series([2.0, 8.0, 18.0])
+            )
+        ],
+    )
+    def test_run_imp(
+        self,
+        length: pd.Series,
+        width: pd.Series,
+        expect: pd.Series
+    ) -> None:
+        actual = PreprocessTask.make_area(length, width)
+        assert actual.equals(expect)

@@ -7,4 +7,4 @@ logger = getLogger(__name__)
 
 class Sample(GokartTask):
     def run(self):
-        self.dump('sample output')
+        self.dump("sample output")

@@ -8,7 +8,7 @@ class TrainTask(GokartTask):
     train_task = gokart.TaskInstanceParameter()
     valid_task = gokart.TaskInstanceParameter()
 
-    def requires(self) -> None:
+    def requires(self) -> dict[str, gokart.TaskInstanceParameter]:
         return {"train": self.train_task, "valid": self.valid_task}
 
     def run(self) -> None:
@@ -40,10 +40,10 @@ class TrainTask(GokartTask):
         # モデルの学習
         model = lgb.train(
             params,
-            train,
+            lgb_train,
             num_boost_round=5000,
-            valid_sets=lgb_eval,
+            valid_sets=[lgb_train, lgb_eval],
             callbacks=[lgb.early_stopping(stopping_rounds=100)],
         )
-        breakpoint()
-        return model
+
+        self.dump(model)

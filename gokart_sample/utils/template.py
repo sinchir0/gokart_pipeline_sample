@@ -6,4 +6,4 @@ logger = getLogger(__name__)
 
 
 class GokartTask(gokart.TaskOnKart):
-    task_namespace = 'gokart_sample'
+    task_namespace = "gokart_sample"
