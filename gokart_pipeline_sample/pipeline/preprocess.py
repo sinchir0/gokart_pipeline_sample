@@ -3,7 +3,7 @@ import pandas as pd
 import pandera as pa
 from pandera.typing import DataFrame
 
-from gokart_pipeline_sample.pipeline.shcemas.schema import IrisFeatureSchema, PreprocessedSchema
+from gokart_pipeline_sample.pipeline.schemas.schema import IrisFeatureSchema, PreprocessedSchema
 from gokart_pipeline_sample.utils.template import GokartTask
 
 

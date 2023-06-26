@@ -1,6 +1,6 @@
 # gokart_sample
 
-[gokart]()のpipelineのsampleコード
+[gokart](https://github.com/m3dev/gokart)のpipelineのsampleコード
 
 
 # Run
