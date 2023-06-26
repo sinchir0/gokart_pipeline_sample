@@ -1,6 +1,6 @@
 # gokart_sample
 
-What's this project?
+[gokart]()のpipelineのsampleコード
 
 
 # Run

@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from gokart_sample.pipeline.preprocess import PreprocessTask
+from gokart_pipeline_sample.pipeline.preprocess import PreprocessTask
 
 
 class TestMakeAreaTask:
