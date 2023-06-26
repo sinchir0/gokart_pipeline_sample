@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "gokart_sample"
+version = "0.1.0"
+description = "gokart sample"
+authors = ["sinchir0"]
+license = "Proprietary"
+
+[tool.poetry.dependencies]
+python = ">=3.11.0,<3.12"
+gokart = "^1.2.2"
+scikit-learn = "^1.2.2"
+wheel = "^0.40.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^6.0.0"
+isort = "^5.12.0"
+mypy = "^1.1.1"
+black = "^23.1.0"
+pytest = "^7.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+# https://github.com/psf/black
+line-length = 120
+
+[tool.isort]
+# https://github.com/PyCQA/isort
+profile = "black"
+line_length = 120
+include_trailing_comma = true
+multi_line_output = 3
+
+[tool.mypy]
+check_untyped_defs = true
+ignore_errors = false
+strict_optional = true
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+
+[[tool.mypy.overrides]]
+module = [
+    "requests",
+    "streamlit_agraph",
+]
+ignore_missing_imports = true
