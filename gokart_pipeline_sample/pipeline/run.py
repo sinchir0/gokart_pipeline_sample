@@ -1,4 +1,5 @@
 import gokart
+import luigi
 
 from gokart_pipeline_sample.pipeline.check import CheckAccuracyTask
 from gokart_pipeline_sample.pipeline.gokart_util import GetDataTask
@@ -14,6 +15,8 @@ from gokart_pipeline_sample.utils.template import GokartTask
 
 
 class RunTask(GokartTask):
+    require_acc = luigi.FloatParameter(default=0.9)
+
     def requires(self) -> gokart.TaskInstanceParameter:
         data_task = LoadDataTask()
 
@@ -29,9 +32,7 @@ class RunTask(GokartTask):
         output_task = MakeOutputTask(pred_task=pred_task, test_task=test_data_task)
 
         checked_output_task = CheckAccuracyTask(
-            pred_task=output_task,
-            test_task=test_data_task,
-            require_acc=0.9
+            pred_task=output_task, test_task=test_data_task, require_acc=self.require_acc
         )
 
         s3_upload_task = UploadS3Task(output_task=checked_output_task)
@@ -43,6 +44,8 @@ class RunTask(GokartTask):
 
 
 class RunNestTask(GokartTask):
+    require_acc = luigi.FloatParameter(default=0.9)
+
     def requires(self) -> gokart.TaskInstanceParameter:
         data_task = PrepareDataTask()
         train_data_task = GetDataTask(data_task=data_task, name="train")
@@ -55,9 +58,7 @@ class RunNestTask(GokartTask):
         output_task = MakeOutputTask(pred_task=pred_task, test_task=test_data_task)
 
         checked_output_task = CheckAccuracyTask(
-            pred_task=output_task,
-            test_task=test_data_task,
-            require_acc=0.9
+            pred_task=output_task, test_task=test_data_task, require_acc=self.require_acc
         )
 
         s3_upload_task = UploadS3Task(output_task=checked_output_task)

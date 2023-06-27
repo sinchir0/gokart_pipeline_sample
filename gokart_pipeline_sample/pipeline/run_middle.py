@@ -12,7 +12,7 @@ class PrepareDataTask(GokartTask):
         data_task = PreprocessTask(data_task=data_task)
         data_task = SplitDataTask(data_task=data_task)
         return data_task
-    
+
     def run(self) -> None:
         data = self.load()
         self.dump(data)
