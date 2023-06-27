@@ -1,3 +1,5 @@
+import gokart
+
 from gokart_pipeline_sample.pipeline.check import CheckAccuracyTask
 from gokart_pipeline_sample.pipeline.gokart_util import GetDataTask
 from gokart_pipeline_sample.pipeline.load_data import LoadDataTask
@@ -12,7 +14,7 @@ from gokart_pipeline_sample.utils.template import GokartTask
 
 
 class RunTask(GokartTask):
-    def requires(self):
+    def requires(self) -> gokart.TaskInstanceParameter:
         data_task = LoadDataTask()
 
         data_task = PreprocessTask(data_task=data_task)
@@ -41,7 +43,7 @@ class RunTask(GokartTask):
 
 
 class RunNestTask(GokartTask):
-    def requires(self):
+    def requires(self) -> gokart.TaskInstanceParameter:
         data_task = PrepareDataTask()
         train_data_task = GetDataTask(data_task=data_task, name="train")
         valid_data_task = GetDataTask(data_task=data_task, name="valid")

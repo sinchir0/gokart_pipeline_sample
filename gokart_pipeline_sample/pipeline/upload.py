@@ -11,7 +11,7 @@ from gokart_pipeline_sample.utils.template import GokartTask
 class UploadS3Task(GokartTask):
     output_task = gokart.TaskInstanceParameter()
 
-    def requires(self):
+    def requires(self) -> gokart.TaskInstanceParameter:
         return self.output_task
 
     def put_file(self, output_data: pd.DataFrame) -> None:

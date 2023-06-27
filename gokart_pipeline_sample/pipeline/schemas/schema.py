@@ -4,7 +4,7 @@ from pandera.typing import Series
 
 class BaseSchema(pa.SchemaModel):
     class Config:
-        coerce = True
+        coerce = False
 
 
 class IrisFeatureSchema(BaseSchema):

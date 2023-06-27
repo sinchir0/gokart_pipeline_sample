@@ -6,7 +6,7 @@
 # Run
 
 ```
-python main.py gokart_sample.RunTask --local-scheduler
+python main.py gokart_pipeline_sample.RunTask --local-scheduler
 ```
 
 # Test

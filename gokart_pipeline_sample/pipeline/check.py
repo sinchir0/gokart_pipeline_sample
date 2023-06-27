@@ -21,6 +21,6 @@ class CheckAccuracyTask(GokartTask):
 
         acc = accuracy_score(y_test, pred["pred"])
         if acc <= self.require_acc:
-            raise ValueError(f"必要な精度に達していません 必要精度:{self.require_acc} 実際の精度:{acc}")
+            raise Exception(f"必要な精度に達していません 必要精度:{self.require_acc} 実際の精度:{acc}")
 
         self.dump(pred)

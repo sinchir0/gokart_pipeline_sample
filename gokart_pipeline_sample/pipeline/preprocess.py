@@ -18,7 +18,7 @@ class PreprocessTask(GokartTask):
         return length * width
 
     @pa.check_types
-    def run_imp(self, data: DataFrame[IrisFeatureSchema]) -> DataFrame[PreprocessedSchema]:
+    def add_area_feature(self, data: DataFrame[IrisFeatureSchema]) -> DataFrame[PreprocessedSchema]:
         # 花びらの面積を新たな特徴量として追加
         data["petal_area"] = self.make_area(data["petal_length"], data["petal_width"])
 
@@ -26,5 +26,5 @@ class PreprocessTask(GokartTask):
 
     def run(self) -> None:
         data = self.load_data_frame()
-        df = self.run_imp(data=data)
+        df = self.add_area_feature(data=data)
         self.dump(df)
