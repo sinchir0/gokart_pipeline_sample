@@ -15,7 +15,7 @@ class TestMakeAreaTask:
             )
         ],
     )
-    def test_run_imp(
+    def test_make_area(
         self,
         length: pd.Series,
         width: pd.Series,
